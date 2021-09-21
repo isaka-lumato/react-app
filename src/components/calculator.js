@@ -14,7 +14,7 @@ export default class Calculator extends Component {
         <span className="btn">AC</span>
         <span className="btn">+/-</span>
         <span className="btn">%</span>
-        <span className="btn sign-color">/</span>
+        <span className="btn sign-color">÷</span>
         <span className="btn">7</span>
         <span className="btn">8</span>
         <span className="btn">9</span>
