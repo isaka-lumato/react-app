@@ -1,5 +1,4 @@
-/* eslint-disable */
-import operate from "./operate";
+import operate from './operate';
 
 function isNumber(item) {
   return !!item.match(/[0-9]+/);
@@ -15,7 +14,7 @@ function isNumber(item) {
  *   operation:String  +, -, etc.
  */
 export default function calculate(obj, buttonName) {
-  if (buttonName === "AC") {
+  if (buttonName === 'AC') {
     return {
       total: 0,
       next: null,
@@ -24,7 +23,7 @@ export default function calculate(obj, buttonName) {
   }
 
   if (isNumber(buttonName)) {
-    if (buttonName === "0" && obj.next === "0") {
+    if (buttonName === '0' && obj.next === '0') {
       return {};
     }
     // If there is an operation, update next
@@ -47,26 +46,26 @@ export default function calculate(obj, buttonName) {
     };
   }
 
-  if (buttonName === ".") {
+  if (buttonName === '.') {
     if (obj.next) {
-      if (obj.next.includes(".")) {
+      if (obj.next.includes('.')) {
         return { ...obj };
       }
       return { ...obj, next: `${obj.next}.` };
     }
     if (obj.operation) {
-      return { next: "0." };
+      return { next: '0.' };
     }
     if (obj.total) {
-      if (obj.total.includes(".")) {
+      if (obj.total.includes('.')) {
         return {};
       }
       return { total: `${obj.total}.` };
     }
-    return { total: "0." };
+    return { total: '0.' };
   }
 
-  if (buttonName === "=") {
+  if (buttonName === '=') {
     if (obj.next && obj.operation) {
       return {
         total: operate(obj.total, obj.next, obj.operation),
@@ -78,7 +77,7 @@ export default function calculate(obj, buttonName) {
     return {};
   }
 
-  if (buttonName === "+/-") {
+  if (buttonName === '+/-') {
     if (obj.next) {
       return { ...obj, next: (-1 * parseFloat(obj.next)).toString() };
     }
