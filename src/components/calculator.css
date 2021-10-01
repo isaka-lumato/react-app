@@ -1,41 +1,39 @@
 body {
-  width: 400px;
+   width: 400px;
   margin: 3rem auto;
 }
-
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background-color: #e0e0e0;
+  background-color: #E0E0E0;
   align-items: center;
   justify-content: center;
 }
-
 .result {
   grid-column: 1/5;
   text-align: right;
   padding: 2%;
-  border: 1px solid #bababa;
-  background-color: #858693;
-  color: #f1f1f1;
-  cursor: pointer;
+  border: 1px solid #BABABA;
+   background-color:#858693;
+   color: #f1f1f1;
+    cursor: pointer;
 }
 
 .zero {
   grid-column: 1/3;
-  text-align: center;
-  padding: 10%;
-  border: 1px solid #bababa;
-  cursor: pointer;
+    text-align: center;
+    padding: 10%;
+   border: 1px solid #BABABA;
+    cursor: pointer;
 }
 
 .btn {
   padding: 20%;
   text-align: center;
-  cursor: pointer;
-  border: 1px solid #bababa;
+   cursor: pointer;
+  border: 1px solid #BABABA;
 }
 
 .sign-color {
-  background-color: #f5913e;
+    background-color:#F5913E;
 }

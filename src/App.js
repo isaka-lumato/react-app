@@ -1,8 +1,13 @@
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import React, { Component } from 'react';
 import Calculator from './components/calculator';
+import Home from './pages/Home';
+import Quote from './pages/Quote';
+import NotMatch from './pages/NotMatch';
+import Navbar from './pages/Navbar';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -10,8 +15,24 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Calculator />
+      <div className="site-wrapper">
+        <Navbar />
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/calculator">
+            <div className="container">
+              <Calculator />
+            </div>
+          </Route>
+          <Route path="/quote">
+            <Quote />
+          </Route>
+          <Route path="*">
+            <NotMatch />
+          </Route>
+        </Switch>
       </div>
     );
   }
