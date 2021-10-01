@@ -1,81 +1,125 @@
-import React, { useState } from 'react';
-import './calculator.css';
+import React, { useEffect, useState } from 'react';
 import calculate from '../logic/calculate';
 
 const Calculator = () => {
-  const [state, setState] = useState({
+  const [calc, setCalc] = useState({
     total: 0,
-    next: null,
-    operation: null,
+    next: '',
+    operation: '',
   });
 
-  const clickHandler = (e) => {
-    setState({ ...state, ...calculate(state, e.target.name) });
-  };
+  useEffect(() => {
+    const { total, next } = calc;
+    const input = document.querySelector('.input');
+    if (next !== null) {
+      input.value = next;
+    } else if (total !== null) {
+      input.value = total;
+    }
+  }, [calc]);
+
+  function handleClick(e) {
+    if (e.target.textContent === 'AC') {
+      const input = document.querySelector('.input');
+      input.value = 0;
+    }
+    const result = calculate(calc, e.target.textContent);
+    setCalc({ ...calc, ...result });
+  }
+
   return (
-    <div className="container">
-      <div className="result" name="total">
-        <span>{state.total}</span>
-        <span>{state.operation}</span>
-        <span>{state.next}</span>
+    <div className="wrapper">
+      <div>
+        <h2 className="heading">Let&apos;s do some Math!</h2>
       </div>
-      <button onClick={clickHandler} type="button" className="btn" name="AC">
-        AC
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="+/-">
-        +/-
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="%">
-        %
-      </button>
-      <button onClick={clickHandler} type="button" className="btn sign-color" name="÷">
-        ÷
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="7">
-        7
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="8">
-        8
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="9">
-        9
-      </button>
-      <button onClick={clickHandler} type="button" className="btn sign-color" name="x">
-        x
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="4">
-        4
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="5">
-        5
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="6">
-        6
-      </button>
-      <button onClick={clickHandler} type="button" className="btn sign-color" name="-">
-        -
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="1">
-        1
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="2">
-        2
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name="3">
-        3
-      </button>
-      <button onClick={clickHandler} type="button" className="btn sign-color" name="+">
-        +
-      </button>
-      <button onClick={clickHandler} type="button" className="zero" name="0">
-        0
-      </button>
-      <button onClick={clickHandler} type="button" className="btn" name=".">
-        .
-      </button>
-      <button onClick={clickHandler} type="button" className="btn sign-color" name="=">
-        =
-      </button>
+      <div className="calc-container">
+        <div className="calc-wrap">
+          <div className="button-wrap">
+            <input className="button span_5 input" placeholder="0" />
+            <button className="button" type="button" onClick={handleClick}>
+              AC
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              +/-
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              %
+            </button>
+            <button
+              className="button colored"
+              type="button"
+              onClick={handleClick}
+            >
+              ÷
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              7
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              8
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              9
+            </button>
+            <button
+              className="button colored"
+              type="button"
+              onClick={handleClick}
+            >
+              x
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              4
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              5
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              6
+            </button>
+            <button
+              className="button colored"
+              type="button"
+              onClick={handleClick}
+            >
+              -
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              1
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              2
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              3
+            </button>
+            <button
+              className="button colored"
+              type="button"
+              onClick={handleClick}
+            >
+              +
+            </button>
+            <button
+              className="button span_3"
+              type="button"
+              onClick={handleClick}
+            >
+              0
+            </button>
+            <button className="button" type="button" onClick={handleClick}>
+              .
+            </button>
+            <button
+              className="button colored"
+              type="button"
+              onClick={handleClick}
+            >
+              =
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
