@@ -1,4 +1,6 @@
 import React from 'react';
+/* eslint-disable */
+
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Calculator from './components/calculator';
